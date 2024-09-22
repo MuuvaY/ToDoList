@@ -20,7 +20,6 @@ function tache() {
   Chaque nouvelle tâche sera ajoutée comme un élément <li> dans cette liste.
   */
   const creali = document.createElement("li");
-  creali.className = "test";
 
   /*
   Crée une case à cocher (input de type "checkbox") pour chaque nouvelle tâche.
@@ -70,7 +69,9 @@ function tache() {
   function barre() {
     if (creacheckbox.checked) {
       // creali.style.textDecoration = "line-through;";
-      creacheckbox.className = "barre";
+      creali.classList.add("barre");
+    } else {
+      creali.classList.remove("barre");
     }
   }
 
