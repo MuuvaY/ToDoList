@@ -6,31 +6,73 @@ function tache() {
   const input = document.getElementById("todo__list");
 
   const inputvalue = input.value;
-
-  // POur afficher les valeurs en bas de l'input il faut d'abord :
-
+  if (inputvalue.trim().length === 0) {
+    return;
+  }
   /*
-  JE SELECTIONNE MA LIST
+  Sélectionne la liste UL (élément avec l'ID "list__todo") où les nouvelles tâches seront affichées.
+  Cette liste contiendra les éléments <li> qui représentent les tâches.
   */
   const list = document.getElementById("list__todo");
 
-  /* 
-  UNE FOIS LA LISTE SELECTIONNER J'UTILISER document.createElement POUR CRÉER UN NOUVEL ÉLÉMENT, 
-  DANS NOTRE CAS ON CRÉE UNE BALISE LI DANS LA CONSTANT crea.
+  /*
+  Crée un nouvel élément de liste <li>.
+  Chaque nouvelle tâche sera ajoutée comme un élément <li> dans cette liste.
   */
-
-  const crea = document.createElement("li");
+  const creali = document.createElement("li");
+  creali.className = "test";
 
   /*
-  À PARTIR DE MAINTENANT, QUAND JE CLICK SUR LE BOUTON Ajouter, JE CRÉER DES BALISES LI VIDE 
-  GRACE À LA CONSTANTE crea MAIS CELLE CI RESTE VIDE.
-
-  LA CONSTANTE ajout SERT À AFFICHER LES LI DANS LE UL GRACE À appendChild().
+  Crée une case à cocher (input de type "checkbox") pour chaque nouvelle tâche.
+  Cette case permettra de marquer les tâches comme complétées.
   */
-  const ajout = list.appendChild(crea);
+  const creacheckbox = document.createElement("input");
+  creacheckbox.type = "checkbox"; // Définit le type comme étant une case à cocher
+  creacheckbox.className = "checkbox"; // Ajoute une classe CSS "checkbox" pour styliser la case à cocher
 
   /*
-  POUR AFFICHER LA VALUEUR DE L'INPUT DANS LES LI IL SUFFIT D'UTILISER append('valeur');
-*/
-  ajout.append(inputvalue);
+  Crée un bouton supprimer pour chaque nouvelle tâche.
+  Cette case permettra de supprimer les taches complétées.
+  */
+  const creasupp = document.createElement("button");
+  creasupp.textContent = "Supprimer";
+  creasupp.className = "supp";
+
+  /*
+  Ajoute la case à cocher à l'intérieur du nouvel élément <li>.
+  Cela permet d'avoir la case à cocher visible à côté de chaque tâche.
+  */
+  creali.appendChild(creacheckbox);
+
+  /*
+  Ajoute le texte de la tâche (valeur de l'input) dans l'élément <li>.
+  Cela affiche la tâche saisie par l'utilisateur à côté de la case à cocher.
+  */
+  creali.append(inputvalue);
+  creali.append(creasupp);
+
+  /*
+  Ajoute l'élément <li> (avec la case à cocher et la tâche) à la liste UL.
+  Cela permet d'afficher la tâche complète dans la liste sous l'input.
+  */
+  list.appendChild(creali);
+
+  input.value = "";
+
+  creasupp.addEventListener("click", supprimer);
+
+  function supprimer() {
+    creali.remove();
+  }
+
+  creacheckbox.addEventListener("change", barre);
+
+  function barre() {
+    if (creacheckbox.checked) {
+      // creali.style.textDecoration = "line-through;";
+      creacheckbox.className = "barre";
+    }
+  }
+
+  console.log(creali);
 }

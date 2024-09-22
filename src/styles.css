@@ -62,7 +62,7 @@ input[type="checkbox"] {
   margin-right: 10px;
 }
 
-.supp__todo {
+.supp {
   margin-left: auto;
   padding: 5px 10px;
   background-color: #dc3545;
@@ -73,6 +73,9 @@ input[type="checkbox"] {
   transition: background-color 0.3s;
 }
 
-.supp__todo:hover {
+.supp:hover {
   background-color: #c82333;
+}
+.barre {
+  text-decoration: line-through;
 }
